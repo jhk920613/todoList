@@ -57,4 +57,9 @@ public class TodoListLogic implements TodoListService {
         this.todoListStore.updateTodo(todo);
         return this.todoListStore.retrieveTodoList();
     }
+
+    @Override
+    public List<Todo> findTodoListByPaging(int pageNumber, int pageSize, String todoComment, String orderBy) {
+        return null;
+    }
 }

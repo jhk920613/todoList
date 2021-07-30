@@ -4,6 +4,9 @@ import com.chklab.entity.Todo;
 import com.chklab.jpo.TodoJpo;
 import com.chklab.repository.TodoListRepository;
 import com.chklab.store.TodoListStore;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -49,5 +52,15 @@ public class TodoListJpaStore implements TodoListStore {
     @Override
     public void deleteTodo(Long seq) {
         this.todoListRepository.deleteById(seq);
+    }
+
+    @Override
+    public List<Todo> retrieveTodoListByPaging(int pageNumber, int pageSize, String todoComment, String orderBy) {
+        Page<TodoJpo> jpos = this.todoListRepository.findByTodoCommentStartingWith(
+                PageRequest.of(pageNumber, pageSize, Sort.by(orderBy)),
+                todoComment
+        );
+
+        return jpos.map(TodoJpo::toDomain).toList();
     }
 }

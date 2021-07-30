@@ -61,4 +61,9 @@ public class TodoListResource {
     List<Todo> updateStatus(@PathVariable("seq") Long seq) {
         return this.todoListService.updateStatus(seq);
     }
+
+    @GetMapping(value = "/paging/{pageNumber}/{pageSize}/{todoComment}/{orderBy}")
+    public List<Todo> findTodoListByPaging(@PathVariable("pageNumber") int pageNumber, @PathVariable("pageSize") int pageSize, @PathVariable("todoComment") String todoComment, @PathVariable("orderBy") String orderBy) {
+        return this.todoListService.findTodoListByPaging(pageNumber, pageSize, todoComment, orderBy);
+    }
 }

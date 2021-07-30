@@ -15,4 +15,6 @@ public interface TodoListService {
 
     List<Todo> updateStatus(Long seq);
 
+    List<Todo> findTodoListByPaging(int pageNumber, int pageSize, String todoComment, String orderBy);
+
 }
