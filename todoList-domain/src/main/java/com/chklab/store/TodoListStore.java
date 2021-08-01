@@ -13,5 +13,5 @@ public interface TodoListStore {
     Todo updateTodo(Todo todo);
     void deleteTodo(Long seq);
 
-    List<Todo> retrieveTodoListByPaging(int pageNumber, int pageSize, String todoComment, String orderBy);
+    List<Todo> retrieveTodoListByPaging(int pageNumber, int pageSize, String status, String orderBy);
 }

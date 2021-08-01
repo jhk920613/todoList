@@ -55,10 +55,10 @@ public class TodoListJpaStore implements TodoListStore {
     }
 
     @Override
-    public List<Todo> retrieveTodoListByPaging(int pageNumber, int pageSize, String todoComment, String orderBy) {
-        Page<TodoJpo> jpos = this.todoListRepository.findByTodoCommentStartingWith(
+    public List<Todo> retrieveTodoListByPaging(int pageNumber, int pageSize, String status, String orderBy) {
+        Page<TodoJpo> jpos = this.todoListRepository.findByStatusStartingWith(
                 PageRequest.of(pageNumber, pageSize, Sort.by(orderBy)),
-                todoComment
+                status
         );
 
         return jpos.map(TodoJpo::toDomain).toList();

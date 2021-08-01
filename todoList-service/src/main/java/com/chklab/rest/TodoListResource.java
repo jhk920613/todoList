@@ -41,29 +41,29 @@ public class TodoListResource {
 
     @ResponseBody
     @PostMapping
-    List<Todo> registerTodo(@RequestBody Todo todo) {
+    Todo registerTodo(@RequestBody Todo todo) {
         return this.todoListService.registerTodo(todo);
     }
 
     @ResponseBody
     @PutMapping
-    List<Todo> modifyTodo(@RequestBody Todo todo) {
+    Todo modifyTodo(@RequestBody Todo todo) {
         return this.todoListService.modifyTodo(todo);
     }
 
     @ResponseBody
     @DeleteMapping(path = "/{seq}")
-    List<Todo> removeTodo(@PathVariable("seq") Long seq) {
-        return this.todoListService.removeTodo(seq);
+    void removeTodo(@PathVariable("seq") Long seq) {
+        this.todoListService.removeTodo(seq);
     }
 
     @PutMapping(value = "/{seq}")
-    List<Todo> updateStatus(@PathVariable("seq") Long seq) {
+    Todo updateStatus(@PathVariable("seq") Long seq) {
         return this.todoListService.updateStatus(seq);
     }
 
-    @GetMapping(value = "/paging/{pageNumber}/{pageSize}/{todoComment}/{orderBy}")
-    public List<Todo> findTodoListByPaging(@PathVariable("pageNumber") int pageNumber, @PathVariable("pageSize") int pageSize, @PathVariable("todoComment") String todoComment, @PathVariable("orderBy") String orderBy) {
-        return this.todoListService.findTodoListByPaging(pageNumber, pageSize, todoComment, orderBy);
+    @GetMapping(value = "/paging/{pageNumber}/{pageSize}/{status}/{orderBy}")
+    public List<Todo> findTodoListByPaging(@PathVariable("pageNumber") int pageNumber, @PathVariable("pageSize") int pageSize, @PathVariable("status") String status, @PathVariable("orderBy") String orderBy) {
+        return this.todoListService.findTodoListByPaging(pageNumber, pageSize, status, orderBy);
     }
 }

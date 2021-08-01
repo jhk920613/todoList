@@ -9,12 +9,12 @@ public interface TodoListService {
 
     List<Todo> findTodoList();
     Todo findBySeq(Long seq);
-    List<Todo> registerTodo(Todo todo);
-    List<Todo> modifyTodo(Todo todo);
-    List<Todo> removeTodo(Long seq);
+    Todo registerTodo(Todo todo);
+    Todo modifyTodo(Todo todo);
+    void removeTodo(Long seq);
 
-    List<Todo> updateStatus(Long seq);
+    Todo updateStatus(Long seq);
 
-    List<Todo> findTodoListByPaging(int pageNumber, int pageSize, String todoComment, String orderBy);
+    List<Todo> findTodoListByPaging(int pageNumber, int pageSize, String status, String orderBy);
 
 }

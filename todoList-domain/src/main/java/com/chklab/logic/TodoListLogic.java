@@ -26,26 +26,23 @@ public class TodoListLogic implements TodoListService {
     }
 
     @Override
-    public List<Todo> registerTodo(Todo todo) {
+    public Todo registerTodo(Todo todo) {
         todo.setStatus("F");
-        this.todoListStore.createTodo(todo);
-        return this.todoListStore.retrieveTodoList();
+        return this.todoListStore.createTodo(todo);
     }
 
     @Override
-    public List<Todo> modifyTodo(Todo todo) {
-        this.todoListStore.updateTodo(todo);
-        return this.todoListStore.retrieveTodoList();
+    public Todo modifyTodo(Todo todo) {
+        return this.todoListStore.updateTodo(todo);
     }
 
     @Override
-    public List<Todo> removeTodo(Long seq) {
+    public void removeTodo(Long seq) {
         this.todoListStore.deleteTodo(seq);
-        return this.todoListStore.retrieveTodoList();
     }
 
     @Override
-    public List<Todo> updateStatus(Long seq) {
+    public Todo updateStatus(Long seq) {
         Todo todo = this.todoListStore.retrieveTodo(seq);
 
         if("T".equals(todo.getStatus())) {
@@ -54,12 +51,11 @@ public class TodoListLogic implements TodoListService {
             todo.setStatus("T");
         }
 
-        this.todoListStore.updateTodo(todo);
-        return this.todoListStore.retrieveTodoList();
+        return this.todoListStore.updateTodo(todo);
     }
 
     @Override
-    public List<Todo> findTodoListByPaging(int pageNumber, int pageSize, String todoComment, String orderBy) {
-        return null;
+    public List<Todo> findTodoListByPaging(int pageNumber, int pageSize, String status, String orderBy) {
+        return this.todoListStore.retrieveTodoListByPaging(pageNumber,pageSize, status, orderBy);
     }
 }

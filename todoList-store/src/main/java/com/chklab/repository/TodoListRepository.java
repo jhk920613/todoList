@@ -12,6 +12,6 @@ public interface TodoListRepository extends JpaRepository<TodoJpo, Long> {
 
     Optional<TodoJpo> findBySeq(Long seq);
 
-    Page<TodoJpo> findByTodoCommentStartingWith(Pageable pageable, String todoComment);
+    Page<TodoJpo> findByStatusStartingWith(Pageable pageable, String todoComment);
 
 }
